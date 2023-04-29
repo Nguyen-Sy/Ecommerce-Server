@@ -1,6 +1,6 @@
 'use strict'
 
-const { findById } = require("../services/apikey.service")
+const { findApiKeyByKey } = require("../services/apikey.service")
 
 const HEADER = {
     API_KEY: 'x-api-key',
@@ -16,7 +16,7 @@ const apiKey = async (req, res, next) => {
             })
         }
 
-        const objKey = await findById(key)
+        const objKey = await findApiKeyByKey(key)
         if (!objKey) {
             return res.status(403).json({
                 message: 'Forbiden error'
@@ -27,7 +27,7 @@ const apiKey = async (req, res, next) => {
         return next()
 
     } catch (error) {
-        console.log("Error::CheckAuth::", error.message)
+        console.log("Error::CheckAPIAuth::", error.message)
     }
 }
 
@@ -50,14 +50,7 @@ const permission = (permission) => {
     }
 }
 
-const asyncHanlder = fn => {
-    return (req, res, next) => {
-        fn(req, res, next).catch(next)
-    }
-}
-
 module.exports = {
     apiKey,
     permission,
-    asyncHanlder
 }

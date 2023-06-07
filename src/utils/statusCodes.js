@@ -80,7 +80,7 @@ module.exports = {
      *
      * This response code means that URI of requested resource has been changed. Probably, new URI would be given in the response.
      */
-    MOVED_PERMANENTLY: 301,
+    MOVED_PERMANENTLY: 3012,
     /**
      * Official Documentation @ https://tools.ietf.org/html/rfc7231#section-6.4.3
      *
